@@ -1,6 +1,10 @@
 import requests, os
+from decouple import config
 
-api_key = os.environ['RIOT_KEY']
+
+
+api_key = config('RIOT_KEY')
+
 summoner_name = input('Nome do Jogador: ')
 
 url = f'https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}'
