@@ -1,0 +1,15 @@
+import requests
+
+api_key = 'SUA_CHAVE_DE_API'
+summoner_name = 'NOME_DO_JOGADOR'
+
+url = f'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}'
+headers = {'X-Riot-Token': api_key}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    summoner_data = response.json()
+    print(summoner_data)
+else:
+    print('Erro na solicitação:', response.status_code)
