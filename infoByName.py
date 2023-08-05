@@ -1,9 +1,10 @@
-import requests, os
-from decouple import config
+import requests
+import os
+#from decouple import config ( old build, new give a virtualenv with path variables )
 
 
 
-api_key = config('RIOT_KEY')
+api_key = os.getenv('RIOT_KEY')
 
 summoner_name = input('Nome do Jogador: ')
 

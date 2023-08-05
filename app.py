@@ -2,14 +2,15 @@ import os
 from flask import Flask, request, jsonify
 import requests
 from urllib.parse import quote
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
 
 app = Flask(__name__)
 
-load_dotenv()
+# load_dotenv()
 api_key = os.getenv('RIOT_KEY')
+# print(api_key)   ( off: my build-project test)
 region = 'br1'
 
 # Função para buscar informações do invocador pelo nome
