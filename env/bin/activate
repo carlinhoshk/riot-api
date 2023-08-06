@@ -38,8 +38,6 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-export RIOT_KEY=RGAPI-21055984-282c-4755-b231-0188b0aac0cc
-
 VIRTUAL_ENV="/home/carlinhoshk/dev/riot-api/env"
 export VIRTUAL_ENV
 
