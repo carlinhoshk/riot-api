@@ -1,31 +1,35 @@
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 from urllib.parse import quote
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 
 
 app = Flask(__name__)
 
-# load_dotenv()
+CORS(app)
+load_dotenv()
 api_key = os.getenv('RIOT_KEY')
-# print(api_key)   ( off: my build-project test)
+print(api_key)  # ( off: my build-project test)
 region = 'br1'
 
 # Função para buscar informações do invocador pelo nome
 def GetInfoByName(summoner_name):
-    url = f'https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{quote(summoner_name)}'
+    url = f'https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}'
     headers = {'X-Riot-Token': api_key}
 
-    response = requests.get(url, headers=headers)
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
 
-    if response.status_code == 200:
         summoner_data = response.json()
         return summoner_data
-    else:
+    except requests.exceptions.RequestException as e:
+        print('Erro na solicitação:', e)
         return None
-# Função para buscar as informações de champion mastery pelo encryptedSummonerId
+
 def GetUserMasteries(summoner_id):
     url = f'https://{region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{quote(summoner_id)}'
     headers = {
